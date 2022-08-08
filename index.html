@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CRUD Operation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="w-75 mx-auto my-5">
+      <div class="form-group">
+        <label for="productName">productName</label>
+        <input type="text" class="my-2 form-control" id="productName" />
+        <small class="text-muted">product Name must be chars only</small>
+      </div>
+      <div class="form-group">
+        <label for="productName">productPrice</label>
+        <input type="number" class="my-2 form-control" id="productPrice" />
+        <small class="text-muted">product Price must be Num only</small>
+      </div>
+      <div class="form-group">
+        <label for="productName">productCategory</label>
+        <input type="text" class="my-2 form-control" id="productCategory" />
+        <small class="text-muted">product Category must be chars only</small>
+      </div>
+      <div class="form-group">
+        <label for="productName">productDescription</label>
+        <textarea
+          type="text"
+          class="my-2 form-control"
+          id="productDescription"
+        ></textarea>
+        <small class="text-muted">product Description must be chars only</small>
+      </div>
+      <button onclick="addProduct()" class="btn btn-outline-info my-3">
+        Add Product
+      </button>
+    </div>
+
+    <table class="table text-center w-75 m-auto py-3">
+      
+      <div class="w-75 mx-auto">
+        <label  for="">Search by Product Name :</label>
+        <input onkeyup="searchProduct(this.value)" class="form-control " type="text" id="search">
+        <!-- Using onkeyup => makes real time value -->
+      </div>
+
+      <thead>
+        <th>index</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </body>
+  <script src="script.js"></script>
+</html>
