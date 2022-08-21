@@ -1,12 +1,23 @@
-var produproductPriceInputctContainer = []; //We made here array of Objects to store all the data and to avoid the overwriting
+var produproductPriceInputctContainer = [];
+var currentIndex = 0; //We made here array of Objects to store all the data and to avoid the overwriting
 if (localStorage.getItem("OurProducts") != null) {
   productContainer = JSON.parse(localStorage.getItem("OurProducts")); //3ashan matrg3sh str trg3 array
   displayProducts();
 }
 var productNameInput = document.getElementById("productName");
-var productPriceInput   = document.getElementById("productPrice");
+var productPriceInput = document.getElementById("productPrice");
 var productCategoryInput = document.getElementById("productCategory");
 var productDescriptionInput = document.getElementById("productDescription");
+var myBtn = document.getElementById("myBtn");
+
+//General function
+function add() {
+  if (myBtn.innerHTML == "Add Product") {
+    addProduct();
+  } else {
+    addUpdate();
+  }
+}
 
 function addProduct() {
   var product = {
@@ -61,7 +72,9 @@ function searchProduct(term) {
   for (var i = 0; i < productContainer.length; i++) {
     //this is how i go throug all the elements in the table
     if (
-      productContainer[i].name.toLowerCase().includes(term.toLowerCase())==true) {
+      productContainer[i].name.toLowerCase().includes(term.toLowerCase()) ==
+      true
+    ) {
       //if the list of  productcontainer names has the term that has been selected
       //to generlaize the cases will make all the letters in lower case
       //Now we want only to show the similar data that appears on search
@@ -78,27 +91,32 @@ function searchProduct(term) {
         
         </tr>`;
     }
-
   }
   document.getElementById("tableBody").innerHTML = cartona;
 
-
   //Using String Methods to generlaize the lower case and select only the item that appears in search
   searchProduct();
-
 }
 
-function updateProducts(index) {//show the data
-    productNameInput.value=productContainer[index].name;
-    productPriceInput.value=productContainer[index].price;
-    productCategoryInput.value=productContainer[index].category;
-    productDescriptionInput.value=productContainer[index].description;
-   document.getElementById("mainBtn").innerHTML="Update Product"
+function updateProducts(index) {
+  //show the data
+  currentIndex = index;
+  productNameInput.value = productContainer[index].name;
+  productPriceInput.value = productContainer[index].price;
+  productCategoryInput.value = productContainer[index].category;
+  productDescriptionInput.value = productContainer[index].description;
+  myBtn.innerHTML = "Update Products"; //convert the add button to update button
+}
+function addUpdate() {
+  productContainer[currentIndex].name = productNameInput.value;
+  productContainer[currentIndex].price = productPriceInput.value;
+  productContainer[currentIndex].category = productCategoryInput.value;
+  productContainer[currentIndex].description = productDescriptionInput.value;
+
+  displayProducts();
+  localStorage.setItem("OurProducts", JSON.stringify(productContainer));
+  clearForm();
+  myBtn.innerHTML = "Add Products"; //convert the add button to update button
+
 
 }
-function updateProoducts(index){///update from the html button
-productContainer.splice(index, 1);
-localStorage.setItem("OurProducts", JSON.stringify(productContainer));
-addProduct();
-}
-
