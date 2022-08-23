@@ -14,17 +14,20 @@
       <div class="form-group">
         <label for="productName">productName</label>
         <input type="text" class="my-2 form-control" id="productName" />
-        <small class="text-muted">product Name must be chars only</small>
+        <small class="text-muted">product Name must be chars 10 only</small>
+        <p id="eror1"></p>
       </div>
       <div class="form-group">
         <label for="productName">productPrice</label>
         <input type="number" class="my-2 form-control" id="productPrice" />
         <small class="text-muted">product Price must be Num only</small>
+        <p id="eror2"></p>
       </div>
       <div class="form-group">
         <label for="productName">productCategory</label>
         <input type="text" class="my-2 form-control" id="productCategory" />
         <small class="text-muted">product Category must be chars only</small>
+        <p id="eror3"></p>
       </div>
       <div class="form-group">
         <label for="productName">productDescription</label>
@@ -34,6 +37,7 @@
           id="productDescription"
         ></textarea>
         <small class="text-muted">product Description must be chars only</small>
+        <p id="eror4"></p>
       </div>
       <button id="myBtn"  onclick="add()" class="btn btn-outline-info my-3">Add Product</button>
       

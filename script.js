@@ -20,17 +20,61 @@ function add() {
 }
 
 function addProduct() {
-  var product = {
-    name: productNameInput.value,
-    price: productPriceInput.value,
-    category: productCategoryInput.value,
-    description: productDescriptionInput.value,
-  };
+  if (validateProductName() == true) {
+    var product = {
+      name: productNameInput.value,
+      price: productPriceInput.value,
+      category: productCategoryInput.value,
+      description: productDescriptionInput.value,
+    };
 
-  productContainer.push(product); // to avoid that elements will overwrite on each other , and put it in box(Container)
-  localStorage.setItem("OurProducts", JSON.stringify(productContainer)); //to put the items in local storage after adding from the user side
-  clearForm();
-  displayProducts();
+    productContainer.push(product); // to avoid that elements will overwrite on each other , and put it in box(Container)
+    localStorage.setItem("OurProducts", JSON.stringify(productContainer)); //to put the items in local storage after adding from the user side
+    document.getElementById("eror1").innerHTML = "";
+    clearForm();
+    displayProducts();
+  } else if (validateProductPrice() == true) {
+    var product = {
+      name: productNameInput.value,
+      price: productPriceInput.value,
+      category: productCategoryInput.value,
+      description: productDescriptionInput.value,
+    };
+
+    productContainer.push(product);
+    localStorage.setItem("OurProducts", JSON.stringify(productContainer));
+    document.getElementById("eror2").innerHTML = "";
+    clearForm();
+    displayProducts();
+  } else if (validateProductCategory() == true) {
+    var product = {
+      name: productNameInput.value,
+      price: productPriceInput.value,
+      category: productCategoryInput.value,
+      description: productDescriptionInput.value,
+    };
+
+    productContainer.push(product);
+    localStorage.setItem("OurProducts", JSON.stringify(productContainer));
+    document.getElementById("eror3").innerHTML = "";
+    clearForm();
+    displayProducts();
+  } else if (validateProductDescription() == true) {
+    var product = {
+      name: productNameInput.value,
+      price: productPriceInput.value,
+      category: productCategoryInput.value,
+      description: productDescriptionInput.value,
+    };
+
+    productContainer.push(product);
+    localStorage.setItem("OurProducts", JSON.stringify(productContainer));
+    document.getElementById("eror4").innerHTML = "";
+    clearForm();
+    displayProducts();
+  } else {
+    console.log("Error");
+  }
 }
 function clearForm() {
   productNameInput.value = "";
@@ -117,6 +161,53 @@ function addUpdate() {
   localStorage.setItem("OurProducts", JSON.stringify(productContainer));
   clearForm();
   myBtn.innerHTML = "Add Products"; //convert the add button to update button
+}
+///////////***************************Validation**********************////////////////////////////////////
 
+function validateProductName() {
+  var regex = /^[A-Z][a-z]{5}$/;
+  if (regex.test(productNameInput.value)) {
+    return true;
+  } else {
+    document.getElementById("eror1").innerHTML =
+      "product name is invalid Must have 5 char";
 
+    return false;
+  }
+}
+function validateProductPrice() {
+  var regex = /^[0-9]{4}$/;
+  if (regex.test(productPriceInput.value)) {
+    return true;
+  } else {
+    document.getElementById("eror2").innerHTML =
+      "product price is invalid Must have 4 Numbers";
+
+    return false;
+  }
+}
+
+function validateProductCategory() {
+  var regex = /^[A-Z][a-z]{6}$/;
+  if (regex.test(productCategoryInput.value)) {
+    return true;
+  } else {
+    document.getElementById("eror3").innerHTML =
+      "product category is invalid Must have 6 char";
+
+    return false;
+  }
+}
+////^[A-Z]\s[a-z]{20}/
+//productDescriptionInput
+function validateProductDescription() {
+  var regex = /^[A-Z]\s[a-z]{10}/;
+  if (regex.test(productDescriptionInput.value)) {
+    return true;
+  } else {
+    document.getElementById("eror4").innerHTML =
+      "product category is invalid Must have 20 words";
+
+    return false;
+  }
 }
